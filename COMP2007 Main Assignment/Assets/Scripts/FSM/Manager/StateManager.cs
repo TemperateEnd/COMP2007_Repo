@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.FSM.States;
+using Assets.Scripts.FSM.Interfaces;
 using UnityEngine;
 
 /// <summary>
@@ -16,21 +18,36 @@ public class StateManager : MonoBehaviour
 
     private void Awake() 
     {
-        if(instanceRef != null)
+        if(instanceRef != null) //If something already exists, destroy the GameObject
         {
-            
+            DestroyImmediate(gameObject);
+        }
+
+        else
+        {
+            instanceRef = this;
+            DontDestroyOnLoad(instanceRef);
+            InstanceRef = instanceRef;
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        IActiveState = new StartState(this);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(IActiveState != null)
+        {
+            IActiveState.StateUpdate();
+        }
+    }
+
+    public void SwitchState(IBaseState nextState)
+    {
+        IActiveState = nextState;
     }
 }
