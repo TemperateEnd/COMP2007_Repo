@@ -17,35 +17,18 @@ public class StartState : IBaseState
         {
             SceneManager.LoadScene("StartState");
         }
-        Debug.Log("Constructing Start State");
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StateUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log($"was in state {SceneManager.GetActiveScene().name}");
             SwitchOver();
         }
-        
     }
 
-    void SwitchOver()
+    public void SwitchOver()
     {
-        Debug.Log($"was in state {SceneManager.GetActiveScene().name}");
         StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef));
     }
 }

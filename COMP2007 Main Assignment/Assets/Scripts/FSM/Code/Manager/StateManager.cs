@@ -9,10 +9,18 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    private IBaseState IActiveState;
+    [SerializeField]private IBaseState IActiveState;
 
     public static StateManager InstanceRef = null;
     private static StateManager instanceRef;
+
+    public bool tutorialSelected = false;
+
+    public GameObject mainMenuUI;
+    public GameObject playerUI;
+    public GameObject pauseMenuUI;
+    public GameObject exitWinUI;
+    public GameObject exitLostUI;
 
     private void Awake() 
     {
