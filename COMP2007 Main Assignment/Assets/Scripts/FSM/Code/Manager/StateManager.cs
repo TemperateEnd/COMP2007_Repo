@@ -16,11 +16,7 @@ public class StateManager : MonoBehaviour
 
     public bool tutorialSelected = false;
 
-    public GameObject mainMenuUI;
-    public GameObject playerUI;
-    public GameObject pauseMenuUI;
-    public GameObject exitWinUI;
-    public GameObject exitLostUI;
+    public GameObject[] UI;
 
     private void Awake() 
     {

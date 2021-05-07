@@ -18,6 +18,19 @@ public class PlayState : IBaseState
             SceneManager.LoadScene("PlayState");
         }
         Debug.Log("Constructing Play State");
+
+        for(int i = 0; i < stateManager.UI.Length; i++)
+        {
+            if(stateManager.UI[i].gameObject.name == "PlayerUI")
+            {
+                stateManager.UI[i].SetActive(true);
+            }
+
+            else
+            {
+                stateManager.UI[i].SetActive(false);
+            }
+        }
     }
 
     // Start is called before the first frame update

@@ -17,7 +17,19 @@ public class EndState_Win : IBaseState
         {
             SceneManager.LoadScene("EndState_Win");
         }
-        Debug.Log("Constructing Win State");
+        
+        for(int i = 0; i < stateManager.UI.Length; i++)
+        {
+            if(stateManager.UI[i].gameObject.name == "exitStateWinUI")
+            {
+                stateManager.UI[i].SetActive(true);
+            }
+
+            else
+            {
+                stateManager.UI[i].SetActive(false);
+            }
+        }
     }
 
     // Start is called before the first frame update

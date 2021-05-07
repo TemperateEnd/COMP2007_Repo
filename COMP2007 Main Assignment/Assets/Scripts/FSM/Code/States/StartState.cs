@@ -17,6 +17,21 @@ public class StartState : IBaseState
         {
             SceneManager.LoadScene("StartState");
         }
+
+        stateManager.UI[0].gameObject.SetActive(true);
+
+        for(int i = 0; i < stateManager.UI.Length; i++)
+        {
+            if(stateManager.UI[i].gameObject.name == "MainMenuUI")
+            {
+                stateManager.UI[i].SetActive(true);
+            }
+
+            else
+            {
+                stateManager.UI[i].SetActive(false);
+            }
+        }
     }
 
     public void StateUpdate()
