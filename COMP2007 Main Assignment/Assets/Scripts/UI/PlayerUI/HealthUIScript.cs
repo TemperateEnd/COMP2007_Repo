@@ -1,18 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+//Will be deriving my work from SE2 of this module
+public class HealthUIScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Slider healthBar;
+    //Hope to add a HealthManager reference later
 }
