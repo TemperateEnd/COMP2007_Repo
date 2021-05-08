@@ -2,8 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
+[Ll]ibrary/
+[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
@@ -67,3 +67,4 @@ COMP2007 Main Assignment/Library/Artifacts/3d/3d5dae9b06a7ebc19607f403ae2f671e
 COMP2007 Main Assignment/Library/SourceAssetDB
 *.json
 *COMP2007 Main Assignment/Temp
+COMP2007 Main Assignment/Library/Artifacts/21/212b673cabb1581c3b2866a988c24050

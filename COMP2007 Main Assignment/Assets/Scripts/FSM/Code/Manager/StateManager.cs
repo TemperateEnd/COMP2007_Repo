@@ -10,7 +10,6 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     [SerializeField]private IBaseState IActiveState;
-
     public static StateManager InstanceRef = null;
     private static StateManager instanceRef;
 
