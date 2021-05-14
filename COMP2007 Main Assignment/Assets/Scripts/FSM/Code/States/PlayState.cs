@@ -18,8 +18,6 @@ public class PlayState : IBaseState
             SceneManager.LoadScene("PlayState");
         }
 
-        stateManager.mainCam = GameObject.Find("PlayerCharacter/Main Camera");
-
         for(int i = 0; i < stateManager.UI.Length; i++)
         {
             if(stateManager.UI[i].gameObject.name == "PlayerUI")
@@ -32,20 +30,10 @@ public class PlayState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        stateManager.mainCam = GameObject.Find("Main Camera");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void StateUpdate()
     {
         if(Input.GetKeyDown(KeyCode.W))

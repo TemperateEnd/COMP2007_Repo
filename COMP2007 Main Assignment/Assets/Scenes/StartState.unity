@@ -1115,7 +1115,7 @@ MonoBehaviour:
   - {fileID: 1441985229}
   - {fileID: 190698917}
   - {fileID: 26659331}
-  uiCanvas: {fileID: 0}
+  uiCanvas: {fileID: 336728310}
   mainCam: {fileID: 0}
 --- !u!1 &578159648
 GameObject:

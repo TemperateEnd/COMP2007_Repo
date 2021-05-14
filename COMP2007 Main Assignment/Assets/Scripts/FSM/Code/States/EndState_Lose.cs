@@ -12,13 +12,15 @@ public class EndState_Lose : IBaseState
     {
         stateManager = stateManagerRef;
         scene = SceneManager.GetActiveScene();
+        
+        stateManager.mainCam = GameObject.Find("Main Camera");
 
         if(scene.name != "EndState_Lose")
         {
             SceneManager.LoadScene("EndState_Lose");
         }
 
-        stateManager.mainCam = GameObject.Find("Main Camera");
+        
         
         for(int i = 0; i < stateManager.UI.Length; i++)
         {

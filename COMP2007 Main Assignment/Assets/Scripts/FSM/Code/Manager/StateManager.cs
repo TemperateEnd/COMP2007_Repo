@@ -22,12 +22,12 @@ public class StateManager : MonoBehaviour
 
     private void Awake() 
     {
+        uiCanvas.worldCamera = mainCam.GetComponent<Camera>();
+
         if(instanceRef != null) //If something already exists, destroy the GameObject
         {
             DestroyImmediate(gameObject);
         }
-
-        //uiCanvas.renderCamera = mainCam.GetComponent<Camera>();
 
         else
         {

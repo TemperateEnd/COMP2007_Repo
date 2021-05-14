@@ -13,12 +13,12 @@ public class EndState_Win : IBaseState
         stateManager = stateManagerRef;
         scene = SceneManager.GetActiveScene();
 
+        stateManager.mainCam = GameObject.Find("Main Camera");
+
         if(scene.name != "EndState_Win")
         {
             SceneManager.LoadScene("EndState_Win");
         }
-
-        stateManager.mainCam = GameObject.Find("Main Camera");
         
         for(int i = 0; i < stateManager.UI.Length; i++)
         {
@@ -34,10 +34,9 @@ public class EndState_Win : IBaseState
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        stateManager.mainCam = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
