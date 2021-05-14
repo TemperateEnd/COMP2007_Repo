@@ -17,6 +17,8 @@ public class EndState_Lose : IBaseState
         {
             SceneManager.LoadScene("EndState_Lose");
         }
+
+        stateManager.mainCam = GameObject.Find("Main Camera");
         
         for(int i = 0; i < stateManager.UI.Length; i++)
         {

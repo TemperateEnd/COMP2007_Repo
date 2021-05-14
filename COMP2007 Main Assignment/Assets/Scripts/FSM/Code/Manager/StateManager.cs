@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// First attempt at implementing my own Finite State Machine (in any and all works linked to this
@@ -16,6 +17,8 @@ public class StateManager : MonoBehaviour
     public bool tutorialSelected = false;
 
     public GameObject[] UI;
+    public Canvas uiCanvas;
+    public GameObject mainCam;
 
     private void Awake() 
     {
@@ -23,6 +26,8 @@ public class StateManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
+
+        //uiCanvas.renderCamera = mainCam.GetComponent<Camera>();
 
         else
         {

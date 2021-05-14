@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +17,8 @@ public class PlayState : IBaseState
         {
             SceneManager.LoadScene("PlayState");
         }
-        Debug.Log("Constructing Play State");
+
+        stateManager.mainCam = GameObject.Find("PlayerCharacter/Main Camera");
 
         for(int i = 0; i < stateManager.UI.Length; i++)
         {

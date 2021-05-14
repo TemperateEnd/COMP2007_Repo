@@ -17,6 +17,8 @@ public class EndState_Win : IBaseState
         {
             SceneManager.LoadScene("EndState_Win");
         }
+
+        stateManager.mainCam = GameObject.Find("Main Camera");
         
         for(int i = 0; i < stateManager.UI.Length; i++)
         {

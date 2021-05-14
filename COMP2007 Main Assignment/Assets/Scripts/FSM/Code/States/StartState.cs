@@ -18,6 +18,8 @@ public class StartState : IBaseState
             SceneManager.LoadScene("StartState");
         }
 
+        stateManager.mainCam = GameObject.Find("Main Camera");
+
         stateManager.UI[0].gameObject.SetActive(true);
 
         for(int i = 0; i < stateManager.UI.Length; i++)
