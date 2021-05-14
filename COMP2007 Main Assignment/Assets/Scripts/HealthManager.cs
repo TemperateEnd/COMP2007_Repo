@@ -48,7 +48,7 @@ public class HealthManager : MonoBehaviour
     {
         if(currentStateManager != null) //This only happens if this is the player character
         {
-            currentStateManager.InstanceRef.SwitchState(new EndState_Lose(currentStateManager.InstanceRef));
+            //currentStateManager.instanceRef.SwitchState(new EndState_Lose(currentStateManager.instanceRef));
         }
 
         else
