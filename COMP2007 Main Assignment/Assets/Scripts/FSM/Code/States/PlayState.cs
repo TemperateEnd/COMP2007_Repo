@@ -30,8 +30,6 @@ public class PlayState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-
-        stateManager.mainCam = GameObject.Find("Main Camera");
     }
     
     public void StateUpdate()

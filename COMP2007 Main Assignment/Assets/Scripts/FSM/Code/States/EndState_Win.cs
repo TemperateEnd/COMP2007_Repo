@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,8 +12,6 @@ public class EndState_Win : IBaseState
     {
         stateManager = stateManagerRef;
         scene = SceneManager.GetActiveScene();
-
-        stateManager.mainCam = GameObject.Find("Main Camera");
 
         if(scene.name != "EndState_Win")
         {
@@ -32,17 +30,6 @@ public class EndState_Win : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-    }
-
-    void Start()
-    {
-        stateManager.mainCam = GameObject.Find("Main Camera");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StateUpdate()

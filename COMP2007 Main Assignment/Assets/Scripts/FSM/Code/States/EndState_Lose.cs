@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,8 +12,6 @@ public class EndState_Lose : IBaseState
     {
         stateManager = stateManagerRef;
         scene = SceneManager.GetActiveScene();
-        
-        stateManager.mainCam = GameObject.Find("Main Camera");
 
         if(scene.name != "EndState_Lose")
         {
@@ -34,17 +32,6 @@ public class EndState_Lose : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StateUpdate()

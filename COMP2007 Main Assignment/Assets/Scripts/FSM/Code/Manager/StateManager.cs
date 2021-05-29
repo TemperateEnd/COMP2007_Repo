@@ -22,6 +22,7 @@ public class StateManager : MonoBehaviour
 
     private void Awake() 
     {
+        mainCam = GameObject.FindWithTag("MainCamera");
         uiCanvas.worldCamera = mainCam.GetComponent<Camera>();
 
         if(instanceRef != null) //If something already exists, destroy the GameObject
@@ -46,6 +47,8 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        mainCam = GameObject.FindWithTag("MainCamera");
+
         if(IActiveState != null)
         {
             IActiveState.StateUpdate();
