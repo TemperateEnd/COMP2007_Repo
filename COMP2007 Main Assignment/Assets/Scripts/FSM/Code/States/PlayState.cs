@@ -34,22 +34,22 @@ public class PlayState : IBaseState
     
     public void StateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
-            SwitchOverWon();
-        }
+        // if(Input.GetKeyDown(KeyCode.W))
+        // {
+        //     Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
+        //     SwitchOverWon();
+        // }
 
-        else if(Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
-            SwitchOverLost();
-        }
+        // else if(Input.GetKeyDown(KeyCode.L))
+        // {
+        //     Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
+        //     SwitchOverLost();
+        // }
 
-        else if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
-        }
+        // else if (Input.GetKeyDown(KeyCode.Backspace))
+        // {
+        //     StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
+        // }
     }
 
     void SwitchOverWon()
