@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class PlayerMovements : MonoBehaviour
 {
+    [Header("Speed Variables")]
     public float moveSpeed;
+    public float rotateSpeed;
 
+    [Header("Idle Timer Variables")]
     public float idleTimer;
+    public float idleTimerMax;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        idleTimer = idleTimerMax;
     }
 
     // Update is called once per frame
@@ -22,9 +26,21 @@ public class PlayerMovements : MonoBehaviour
 
         if(Input.anyKey)
         {
+            idleTimer = idleTimerMax;
+
             if(Input.GetButtonDown("Horizontal"))
             {
-                transform.rotation.eulerAngles.y += (h * moveSpeed);
+                if(h > 0)
+                {
+                    Debug.Log("Should rotate right");
+                    transform.Rotate(0, transform.rotation.eulerAngles.y + (h * rotateSpeed), 0);
+                }
+                
+                else if(h < 0)
+                {
+                    Debug.Log("Should rotate left");
+                    transform.Rotate(0, transform.rotation.eulerAngles.y - (h * rotateSpeed), 0);
+                }
             }
 
             else if(Input.GetButtonDown("Vertical")) 
