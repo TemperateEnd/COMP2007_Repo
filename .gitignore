@@ -82,3 +82,5 @@ COMP2007 Main Assignment/Library/shadercompiler-UnityShaderCompiler.exe4.log
 COMP2007 Main Assignment/Library/shadercompiler-UnityShaderCompiler.exe3.log
 *.log
 *.asset
+*.log
+*.json

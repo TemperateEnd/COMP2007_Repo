@@ -12,6 +12,9 @@ public class PlayerMovements : MonoBehaviour
     public float idleTimer;
     public float idleTimerMax;
 
+    public bool isRotating;
+    public bool isMoving;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,22 +33,22 @@ public class PlayerMovements : MonoBehaviour
 
             if(Input.GetButtonDown("Horizontal"))
             {
-                if(h > 0)
-                {
-                    Debug.Log("Should rotate right");
-                    transform.Rotate(0, transform.rotation.eulerAngles.y + (h * rotateSpeed), 0);
-                }
-                
-                else if(h < 0)
-                {
-                    Debug.Log("Should rotate left");
-                    transform.Rotate(0, transform.rotation.eulerAngles.y - (h * rotateSpeed), 0);
-                }
+                isRotating = true;
             }
 
-            else if(Input.GetButtonDown("Vertical")) 
+            if(Input.GetButtonUp("Horizontal"))
             {
-                transform.Translate(0, 0, transform.position.z + (v * moveSpeed));
+                isRotating = false;
+            }
+
+            if(Input.GetButtonDown("Vertical")) 
+            {
+                isMoving = true;
+            }
+
+            if(Input.GetButtonUp("Vertical"))
+            {
+                isMoving = false;
             }
         }
 
@@ -57,6 +60,18 @@ public class PlayerMovements : MonoBehaviour
             {
                 Debug.Log("Player is currently idle");
             }
+        }
+
+        if(isRotating)
+        {
+            Debug.Log("Should be rotating");
+            transform.Rotate(0, (h * rotateSpeed), 0);
+        }
+
+        if(isMoving)
+        {
+            Debug.Log("Should be moving");
+            transform.Translate(0, 0, (v * moveSpeed));
         }
         
     }
