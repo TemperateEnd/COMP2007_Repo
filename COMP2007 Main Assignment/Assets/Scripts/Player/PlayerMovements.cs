@@ -6,16 +6,16 @@ public class PlayerMovements : MonoBehaviour
 {
     [SerializeField] Animator playerAnimController;
     [Header("Speed Variables")]
-    public float moveSpeed;
-    public float rotateSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float rotateSpeed;
 
     [Header("Idle Timer Variables")]
-    public float idleTimer;
-    public float idleTimerMax;
+    [SerializeField] private float idleTimer;
+    [SerializeField] private float idleTimerMax;
 
     [Header("Movement booleans")]
-    public bool isRotating;
-    public bool isMoving;
+    [SerializeField] private bool isRotating;
+    [SerializeField] private bool isMoving;
 
     // Start is called before the first frame update
     void Start()
