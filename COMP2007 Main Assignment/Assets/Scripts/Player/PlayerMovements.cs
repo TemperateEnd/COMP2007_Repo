@@ -34,29 +34,29 @@ public class PlayerMovements : MonoBehaviour
             idleTimer = idleTimerMax;
             playerAnimController.SetBool("Idle", false);
 
-            if(Input.GetButton("Horizontal"))
+            if(Input.GetButtonDown("Horizontal"))
             {
                 Debug.Log("Player has pressed rotate button");
                 isRotating = true;
             }
 
-            else if(Input.GetButtonUp("Horizontal"))
-            {
-                Debug.Log("Player has released rotate button");
-                isRotating = false;
-            }
-
-            if(Input.GetButton("Vertical")) 
+            if(Input.GetButtonDown("Vertical")) 
             {
                 Debug.Log("Player has pressed move button");
                 isMoving = true;
             }
+        }
 
-            else if(Input.GetButtonUp("Vertical"))
-            {
-                Debug.Log("Player has released move button");
-                isMoving = false;
-            }
+        if(Input.GetButtonUp("Vertical"))
+        {
+            Debug.Log("Player has released move button");
+            isMoving = false;
+        }
+
+        if(Input.GetButtonUp("Horizontal"))
+        {
+            Debug.Log("Player has released rotate button");
+            isRotating = false;
         }
 
         if(isRotating)
