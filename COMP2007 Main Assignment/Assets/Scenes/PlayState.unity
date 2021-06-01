@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerKatana: {fileID: 921730731}
   playerAnimController: {fileID: 211924509}
-  readyForCombat: 0
+  maxAttackTime: 2.033
 --- !u!1 &1298600024
 GameObject:
   m_ObjectHideFlags: 0

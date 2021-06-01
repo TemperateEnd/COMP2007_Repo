@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public GameObject playerKatana;
-    [SerializeField] private Animator playerAnimController;
-    [SerializeField] private bool readyForCombat;
-    [SerializeField] private bool weaponReady;
+    [SerializeField]private Animator playerAnimController;
+    [SerializeField]private float maxAttackTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        readyForCombat = false;
         playerKatana.SetActive(false);
     }
 
@@ -21,33 +19,22 @@ public class PlayerCombat : MonoBehaviour
     {
         if(Input.GetButtonDown("Equip Weapon"))
         {
-            weaponReady = !weaponReady;
-            readyForCombat = !readyForCombat;
-        }
+            playerKatana.SetActive(!playerKatana.activeSelf);
 
-        if(readyForCombat)
-        {
-            if(Input.GetButtonDown("Attack"))
+            if(playerKatana.activeSelf == true)
             {
-                playerAnimController.SetInteger("AttackCombo", playerAnimController.GetInteger("AttackCombo")+1);
+                playerAnimController.SetTrigger("EquipWeapon");
+            }
 
-                if(playerAnimController.GetInteger("AttackCombo") > 2)
-                {
-                    playerAnimController.SetInteger("AttackCombo", 0);
-                }
+            else if(playerKatana.activeSelf == false)
+            {
+                playerAnimController.SetTrigger("UnequipWeapon");
             }
         }
 
-        if(!weaponReady)
+        if(Input.GetButtonDown("Attack"))
         {
-            playerKatana.SetActive(true);
-            playerAnimController.SetBool("ReadyForCombat", true);
-        }
-
-        else if(weaponReady)
-        {
-            playerAnimController.SetBool("ReadyForCombat", false);
-            playerKatana.SetActive(false);
+            playerAnimController.SetTrigger("isAttacking");
         }
     }
 
