@@ -32,9 +32,16 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("Attack"))
+        if(Input.GetButtonDown("Attack") && playerKatana.activeSelf == true)
         {
             playerAnimController.SetTrigger("isAttacking");
+
+            playerAnimController.SetInteger("attackNumber", playerAnimController.GetInteger("attackNumber")+1);
+
+            if(playerAnimController.GetInteger("attackNumber") > 2)
+            {
+                playerAnimController.SetInteger("attackNumber", 1);
+            }
         }
     }
 
