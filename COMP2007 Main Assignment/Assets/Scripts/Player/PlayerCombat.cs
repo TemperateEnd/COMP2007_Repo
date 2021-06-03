@@ -49,6 +49,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if(col.gameObject.tag == "EnemyWeapon")
         {
+            Debug.Log("Enemy weapon collision detected");
             this.gameObject.GetComponent<HealthManager>().currHP -= 25;
         }
     }
