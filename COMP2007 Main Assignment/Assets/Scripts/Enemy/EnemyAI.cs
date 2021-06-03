@@ -10,7 +10,8 @@ public class EnemyAI : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private bool isMoving;
     [SerializeField] private float moveSpeed;
-    [SerializeField] public float combatRange;
+    [SerializeField] private float combatRange;
+    public bool canAttack;
 
     [Header("Combat")]
     [SerializeField] private float attackTimer;
@@ -35,6 +36,7 @@ public class EnemyAI : MonoBehaviour
             enemyKatana.SetActive(true);
             enemyAnimController.SetTrigger("EquipWeapon");
             readyForCombat = true;
+            canAttack = true;
         }
 
         else if((this.gameObject.transform.position.z - player.transform.position.z) > combatRange)
@@ -43,7 +45,7 @@ public class EnemyAI : MonoBehaviour
             isMoving = true;
         }
 
-        if(readyForCombat = true)
+        if((readyForCombat == true) && (canAttack == true))
         {
             cooldownTime -= Time.deltaTime;
 

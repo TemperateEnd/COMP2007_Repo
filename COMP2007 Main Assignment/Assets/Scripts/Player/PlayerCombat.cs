@@ -49,7 +49,10 @@ public class PlayerCombat : MonoBehaviour
                 playerAnimController.SetInteger("attackNumber", 1);
             }
 
-            currentTarget.GetComponent<HealthManager>().currHP -= 25;
+            if(currentTarget.GetComponent<EnemyAI>().canAttack = true)
+            {
+                currentTarget.GetComponent<HealthManager>().currHP -= 25;
+            }
         }
 
         if(Input.GetButtonDown("Change Target"))
