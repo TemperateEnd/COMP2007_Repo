@@ -32,6 +32,19 @@ public class PlayState : IBaseState
         }
     }
     
+    void Start() 
+    {
+        if(stateManager.tutorialSelected)
+        {
+            //Insert tutorial stuff here
+        }
+
+        else
+        {
+            stateManager.SpawnEnemies(stateManager.enemyCount);
+        }
+    }
+
     public void StateUpdate()
     {
         // if(Input.GetKeyDown(KeyCode.W))

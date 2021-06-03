@@ -19,9 +19,13 @@ public class StateManager : MonoBehaviour
     public GameObject[] UI;
     public Canvas uiCanvas;
     public GameObject mainCam;
+    public GameObject enemyPrefab;
+    public Vector3[] spawnPositions;
+    public int enemyCount;
 
     private void Awake() 
     {
+        enemyPrefab = Resources.Load("Enemy") as GameObject;
         mainCam = GameObject.FindWithTag("MainCamera");
         uiCanvas.worldCamera = mainCam.GetComponent<Camera>();
 
@@ -58,5 +62,13 @@ public class StateManager : MonoBehaviour
     public void SwitchState(IBaseState nextState)
     {
         IActiveState = nextState;
+    }
+
+    public void SpawnEnemies(int spawnCount)
+    {
+        for(int i = 0; i < spawnCount; i++)
+        {
+            Instantiate(enemyPrefab, spawnPositions[i], enemyPrefab.transform.rotation);
+        }
     }
 }
