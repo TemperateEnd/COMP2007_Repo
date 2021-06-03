@@ -8,10 +8,16 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]private Animator playerAnimController;
     [SerializeField]private float maxAttackTime;
 
+    [SerializeField] private GameObject[] targets;
+    private int targetNumber;
+    [SerializeField] private GameObject currentTarget;
+
     // Start is called before the first frame update
     void Start()
     {
         playerKatana.SetActive(false);
+        targets = GameObject.FindGameObjectsWithTag("Enemy");
+        currentTarget = targets[0];
     }
 
     // Update is called once per frame
@@ -42,15 +48,23 @@ public class PlayerCombat : MonoBehaviour
             {
                 playerAnimController.SetInteger("attackNumber", 1);
             }
-        }
-    }
 
-    private void OnCollisionEnter(Collision col) 
-    {
-        if(col.gameObject.tag == "EnemyWeapon")
+            currentTarget.GetComponent<HealthManager>().currHP -= 25;
+        }
+
+        if(Input.GetButtonDown("Change Target"))
         {
-            Debug.Log("Enemy weapon collision detected");
-            this.gameObject.GetComponent<HealthManager>().currHP -= 25;
+            if(targetNumber > targets.Length)
+            {
+                targetNumber = 0;
+            }
+
+            else
+            {
+                targetNumber++;
+            }
+            
+            currentTarget = targets[targetNumber];
         }
     }
 }

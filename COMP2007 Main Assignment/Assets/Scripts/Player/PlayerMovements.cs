@@ -36,26 +36,22 @@ public class PlayerMovements : MonoBehaviour
 
             if(Input.GetButtonDown("Horizontal"))
             {
-                Debug.Log("Player has pressed rotate button");
                 isRotating = true;
             }
 
             if(Input.GetButtonDown("Vertical")) 
             {
-                Debug.Log("Player has pressed move button");
                 isMoving = true;
             }
         }
 
         if(Input.GetButtonUp("Vertical"))
         {
-            Debug.Log("Player has released move button");
             isMoving = false;
         }
 
         if(Input.GetButtonUp("Horizontal"))
         {
-            Debug.Log("Player has released rotate button");
             isRotating = false;
         }
 
@@ -66,7 +62,6 @@ public class PlayerMovements : MonoBehaviour
 
         if(isMoving)
         {
-            Debug.Log("Should be moving");
             transform.Translate(0, 0, (v * moveSpeed));
             playerAnimController.SetBool("Running", true);
         }
@@ -82,7 +77,6 @@ public class PlayerMovements : MonoBehaviour
 
             if(idleTimer <= 0)
             {
-                Debug.Log("Player is currently idle");
                 playerAnimController.SetBool("Idle", true);
             }
         }
