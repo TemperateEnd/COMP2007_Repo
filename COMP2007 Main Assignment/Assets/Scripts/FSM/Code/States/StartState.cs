@@ -36,10 +36,10 @@ public class StartState : IBaseState
 
     public void StateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchOver();
-        }
+        // if(Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     SwitchOver();
+        // }
     }
 
     public void SwitchOver()

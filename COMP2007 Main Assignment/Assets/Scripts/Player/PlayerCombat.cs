@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]private Animator playerAnimController;
     [SerializeField]private float maxAttackTime;
 
-    [SerializeField] private GameObject[] targets;
+    public GameObject[] targets;
     private int targetNumber;
     [SerializeField] private GameObject currentTarget;
 
@@ -23,6 +23,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        targets = GameObject.FindGameObjectsWithTag("Enemy");
         if(Input.GetButtonDown("Equip Weapon"))
         {
             playerKatana.SetActive(!playerKatana.activeSelf);
@@ -49,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
                 playerAnimController.SetInteger("attackNumber", 1);
             }
 
-            if(currentTarget.GetComponent<EnemyAI>().canAttack = true)
+            if(currentTarget.GetComponent<EnemyAI>().canAttack == true)
             {
                 currentTarget.GetComponent<HealthManager>().currHP -= 25;
             }

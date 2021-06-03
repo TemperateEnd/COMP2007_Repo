@@ -30,28 +30,26 @@ public class PlayState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-    }
-    
-    void Start() 
-    {
-        if(stateManager.tutorialSelected)
+
+        if(stateManager.GetComponent<StateManager>().tutorialSelected)
         {
-            //Insert tutorial stuff here
+            stateManager.enemyCount = 1;
         }
 
         else
         {
-            stateManager.SpawnEnemies(stateManager.enemyCount);
+            stateManager.enemyCount = 3;
         }
+
+
     }
 
     public void StateUpdate()
     {
-        // if(Input.GetKeyDown(KeyCode.W))
-        // {
-        //     Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
-        //     SwitchOverWon();
-        // }
+        if(stateManager.enemyCount == 0)
+        {
+            SwitchOverWon();
+        }
 
         // else if(Input.GetKeyDown(KeyCode.L))
         // {

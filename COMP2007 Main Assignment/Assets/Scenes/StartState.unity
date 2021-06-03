@@ -1117,6 +1117,12 @@ MonoBehaviour:
   - {fileID: 26659331}
   uiCanvas: {fileID: 336728310}
   mainCam: {fileID: 0}
+  enemyPrefab: {fileID: 4216223571983327299, guid: 1b1b6a8e1eaa2f44b866d23aa4bfe845,
+    type: 3}
+  spawnPositions:
+  - {x: 558, y: 15, z: 150}
+  enemiesToSpawn: 1
+  enemyCount: 0
 --- !u!1 &578159648
 GameObject:
   m_ObjectHideFlags: 0
