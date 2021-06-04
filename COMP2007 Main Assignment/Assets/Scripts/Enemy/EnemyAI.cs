@@ -70,13 +70,13 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator Attack()
     {
-        enemyAnimController.SetTrigger("isAttacking");
+        enemyAnimController.SetTrigger("Attacking");
 
-        enemyAnimController.SetInteger("attackNumber", enemyAnimController.GetInteger("attackNumber")+1);
+        enemyAnimController.SetInteger("AttackNumber", enemyAnimController.GetInteger("AttackNumber")+1);
 
-        if(enemyAnimController.GetInteger("attackNumber") > 2)
+        if(enemyAnimController.GetInteger("AttackNumber") > 2)
         {
-            enemyAnimController.SetInteger("attackNumber", 1);
+            enemyAnimController.SetInteger("AttackNumber", 1);
         }
 
         yield return new WaitForSeconds(attackTimer);
