@@ -1135,6 +1135,7 @@ MonoBehaviour:
   - {x: 500, y: 15, z: 800}
   - {x: 0, y: 15, z: 800}
   enemiesToSpawn: 1
+  maxEnemiesToSpawn: 0
 --- !u!4 &1037227846
 Transform:
   m_ObjectHideFlags: 0
@@ -1276,6 +1277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currHP: 0
+  hpState: 2
   currentStateManager: {fileID: 0}
 --- !u!114 &1297562934
 MonoBehaviour:
@@ -1311,7 +1313,10 @@ MonoBehaviour:
   playerKatana: {fileID: 921730731}
   playerAnimController: {fileID: 211924509}
   maxAttackTime: 2.033
+  attackTimer: 0
+  canAttack: 0
   targets: []
+  targetNumber: 0
   currentTarget: {fileID: 0}
 --- !u!65 &1297562936
 BoxCollider:

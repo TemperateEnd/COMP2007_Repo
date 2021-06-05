@@ -36,13 +36,9 @@ public class StartState : IBaseState
 
     public void StateUpdate()
     {
-        // if(Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     SwitchOver();
-        // }
     }
 
-    public void SwitchOver()
+    public void SwitchOver() //Move to Play State from here
     {
         StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef));
     }

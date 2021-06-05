@@ -20,58 +20,58 @@ public class PlayerMovements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        idleTimer = idleTimerMax;
+        idleTimer = idleTimerMax; //Sets it so that idleTimer starts at the max
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal"); //Gets value of Horizontal axis as player presses A and D
+        float v = Input.GetAxisRaw("Vertical"); //Gets value of Vertical axis as player presses S and W
 
-        if(Input.anyKey)
+        if(Input.anyKey) //If player touches any key, idleTimer is reset
         {
             idleTimer = idleTimerMax;
             playerAnimController.SetBool("Idle", false);
 
-            if(Input.GetButtonDown("Horizontal"))
+            if(Input.GetButtonDown("Horizontal")) //If A or D are pressed, rotate left or right
             {
                 isRotating = true;
             }
 
-            if(Input.GetButtonDown("Vertical")) 
+            if(Input.GetButtonDown("Vertical")) //If S or W are pressed, move forward or backwards
             {
                 isMoving = true;
             }
         }
 
-        if(Input.GetButtonUp("Vertical"))
+        if(Input.GetButtonUp("Vertical")) //If S or W are released, stop moving
         {
             isMoving = false;
         }
 
-        if(Input.GetButtonUp("Horizontal"))
+        if(Input.GetButtonUp("Horizontal")) //If A or D are released, stop rotating
         {
             isRotating = false;
         }
 
-        if(isRotating)
+        if(isRotating) //Rotate if this is true
         {
             transform.Rotate(0, (h * rotateSpeed), 0);
         }
 
-        if(isMoving)
+        if(isMoving) //Move if this is true
         {
             transform.Translate(0, 0, (v * moveSpeed));
             playerAnimController.SetBool("Running", true);
         }
 
-        if(!isMoving)
+        if(!isMoving) //Don't move if this is false
         {
             playerAnimController.SetBool("Running", false);
         }
 
-        else
+        else //Play idle animation if idleTimer reaches 0
         {
             idleTimer -= Time.deltaTime;
 

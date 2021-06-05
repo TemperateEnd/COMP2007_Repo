@@ -30,37 +30,19 @@ public class PlayState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
-
-        if(stateManager.GetComponent<StateManager>().tutorialSelected)
-        {
-            stateManager.enemyCount = 1;
-        }
-
-        else
-        {
-            stateManager.enemyCount = 3;
-        }
-
-
     }
 
     public void StateUpdate()
     {
-        if(stateManager.enemyCount == 0)
+        if(stateManager.enemiesToKill == 0)
         {
-            SwitchOverWon();
+            SwitchOverWon(); //If player kills all enemies, they win
         }
 
-        // else if(Input.GetKeyDown(KeyCode.L))
-        // {
-        //     Debug.Log($"Switching over from {SceneManager.GetActiveScene().name}");
-        //     SwitchOverLost();
-        // }
-
-        // else if (Input.GetKeyDown(KeyCode.Backspace))
-        // {
-        //     StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
-        // }
+        else if(stateManager.playerDead == true)
+        {
+            SwitchOverLost(); //If player is dead, they lose
+        }
     }
 
     void SwitchOverWon()

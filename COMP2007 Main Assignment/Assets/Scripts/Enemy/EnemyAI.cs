@@ -7,10 +7,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject enemyKatana;
     [SerializeField] private GameObject player;
     [SerializeField] private Animator enemyAnimController;
+    public ParticleSystem targetParticles;
+
     [Header("Movement")]
     [SerializeField] private bool isMoving;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float combatRange;
+    [SerializeField] private float dist;
     public bool canAttack;
 
     [Header("Combat")]
@@ -30,22 +32,25 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((this.gameObject.transform.position.z - player.transform.position.z) < combatRange)
+        transform.LookAt(player.transform);
+
+        if(Vector3.Distance(player.transform.position, transform.position) < dist) //Enemy stops and gets ready for combat if in range with player
         {
-            isMoving = false;
+            this.gameObject.transform.Translate(0, 0, 0);
+            enemyAnimController.SetBool("Running", false);
             enemyKatana.SetActive(true);
             enemyAnimController.SetTrigger("EquipWeapon");
             readyForCombat = true;
             canAttack = true;
         }
 
-        else if((this.gameObject.transform.position.z - player.transform.position.z) > combatRange)
+        else if(Vector3.Distance(player.transform.position, transform.position) > dist) //Enemy rushes at player until they are in range
         {
-            this.gameObject.transform.LookAt(player.transform);
-            isMoving = true;
+            enemyAnimController.SetBool("Running", true);
+            this.gameObject.transform.Translate(0, 0, 1 * moveSpeed);
         }
 
-        if((readyForCombat == true) && (canAttack == true))
+        if((readyForCombat == true) && (canAttack == true)) //Enemy waits before attacking
         {
             cooldownTime -= Time.deltaTime;
 
@@ -55,20 +60,9 @@ public class EnemyAI : MonoBehaviour
                 cooldownTime = maxCooldownTime;
             }
         }
-
-        if(isMoving)
-        {
-            this.gameObject.transform.Translate(0, 0, 1 * moveSpeed);
-            enemyAnimController.SetBool("Running", true);
-        }
-
-        if(!isMoving)
-        {
-            enemyAnimController.SetBool("Running", false);
-        }
     }
 
-    IEnumerator Attack()
+    IEnumerator Attack() //Attacks player, playing varying animations depending on value of AttackNumber
     {
         enemyAnimController.SetTrigger("Attacking");
 
@@ -80,6 +74,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         yield return new WaitForSeconds(attackTimer);
-        player.GetComponent<HealthManager>().currHP -= 25;
+        player.GetComponent<HealthManager>().DecreaseHP(25);
+        player.GetComponent<PlayerUIScript>().enemiesKilled++;
     }
 }

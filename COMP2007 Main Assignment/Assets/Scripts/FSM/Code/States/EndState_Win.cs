@@ -34,15 +34,10 @@ public class EndState_Win : IBaseState
 
     public void StateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchOver();
-        }
     }
 
     void SwitchOver()
     {
-        Debug.Log($"was in state {SceneManager.GetActiveScene().name}");
-        StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef));
+        StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
     }
 }

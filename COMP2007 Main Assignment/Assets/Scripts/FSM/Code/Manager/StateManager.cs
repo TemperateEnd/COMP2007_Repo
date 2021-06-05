@@ -14,16 +14,18 @@ public class StateManager : MonoBehaviour
     public static StateManager InstanceRef = null;
     private static StateManager instanceRef;
 
-    public bool tutorialSelected = false;
-
-    public GameObject[] UI;
+    public bool tutorialSelected = false; //Check if tutorial is selected
+    public bool playerDead = false; //Check if player still lives
+    public GameObject[] UI; //UI for various game states
     public Canvas uiCanvas;
     public GameObject mainCam;
-    public int enemyCount;
+    public int enemyCountCurrentWave; //Enemies remaining in current wave
+    public int enemiesToKill; //Total amount of enemies remaining for player to kill
+    public int waveCount; //For use when increasing stats for both enemy and player
 
     private void Awake() 
     {
-        mainCam = GameObject.FindWithTag("MainCamera");
+        mainCam = GameObject.FindWithTag("MainCamera"); //Finds camera in Scene and assigns it to mainCam
         uiCanvas.worldCamera = mainCam.GetComponent<Camera>();
 
         if(instanceRef != null) //If something already exists, destroy the GameObject
@@ -48,14 +50,19 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        mainCam = GameObject.FindWithTag("MainCamera");
+        mainCam = GameObject.FindWithTag("MainCamera"); //Finds camera in Scene and assigns it to mainCam
 
         if(IActiveState != null)
         {
             IActiveState.StateUpdate();
         }
 
-        enemyCount = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>().targets.Length;
+        enemyCountCurrentWave = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>().targets.Length;
+
+        if(Input.GetButtonDown("Pause"))
+        {
+            UI[2].SetActive(true);
+        }
     }
 
     public void SwitchState(IBaseState nextState)
