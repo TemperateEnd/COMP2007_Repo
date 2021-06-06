@@ -11,10 +11,11 @@ public class GameLoseScript : MonoBehaviour
             case "Restart":
                 StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef)); //Start game again
                 StateManager.InstanceRef.tutorialSelected = false;
+                this.gameObject.SetActive(false);
                 break;
             case "Exit":
                 StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef)); //Return to main menu
-                StateManager.InstanceRef.tutorialSelected = false;
+                this.gameObject.SetActive(false);
                 break;
         }
     }

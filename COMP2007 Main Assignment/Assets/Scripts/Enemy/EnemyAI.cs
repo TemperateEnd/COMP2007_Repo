@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private GameObject enemyKatana;
     [SerializeField] private GameObject player;
     [SerializeField] private Animator enemyAnimController;
-    public ParticleSystem targetParticles;
+    public TMP_Text targetText;
 
     [Header("Movement")]
     public bool isMoving = true;
@@ -30,6 +31,8 @@ public class EnemyAI : MonoBehaviour
         cooldownTime = maxCooldownTime;
         enemyKatana.SetActive(false);
         player = GameObject.FindWithTag("Player");
+        targetText = gameObject.GetComponentInChildren<TMP_Text>();
+        targetText.enabled = false;
     }
 
     // Update is called once per frame

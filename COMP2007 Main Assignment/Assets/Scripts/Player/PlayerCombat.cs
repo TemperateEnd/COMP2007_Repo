@@ -19,15 +19,13 @@ public class PlayerCombat : MonoBehaviour
         playerKatana.SetActive(false); /**By default, weapon is not enabled. After all, a wise man said something about using something for defense and not attack 
                                         (for those who saw Episode V: Best plot twist ever)**/
         canAttack = false; //Attack, you cannot. For enabled, the weapon is not.
-        targets = GameObject.FindGameObjectsWithTag("Enemy");
-        currentTarget = targets[0]; //By default, target first enemy on list
         attackTimer = maxAttackTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        targets = GameObject.FindGameObjectsWithTag("Enemy"); //Fill array of targets with all enemies currently in scene
+        
         if(Input.GetButtonDown("Equip Weapon")) //If F key is pressed, play animation and enable katana Gameobject
         {
             playerKatana.SetActive(!playerKatana.activeSelf);
@@ -71,6 +69,15 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+        if(GameObject.FindGameObjectsWithTag("Enemy") != null) //If enemies exist, populate targets array and target first enemy on list by default
+        {
+            targets = GameObject.FindGameObjectsWithTag("Enemy");
+            currentTarget = targets[0];
+        }
+
+        currentTarget.GetComponent<EnemyAI>().targetText.enabled = true;
+        targets = GameObject.FindGameObjectsWithTag("Enemy"); //Fill array of targets with all enemies currently in scene
+
         if(Input.GetButtonDown("Change Target")) //If Tab key is pressed, change target
         {
             if(targetNumber > targets.Length)
@@ -85,7 +92,6 @@ public class PlayerCombat : MonoBehaviour
         }
 
         currentTarget = targets[targetNumber]; //has it so that target changes if target number changes
-        currentTarget.GetComponent<EnemyAI>().targetParticles.startColor = Color.red;
-        currentTarget.GetComponent<EnemyAI>().targetParticles.Emit(100); //Particle system emits red particles where enemy is if they are targeted
+        currentTarget.GetComponent<EnemyAI>().targetText.enabled = true;
     }
 }

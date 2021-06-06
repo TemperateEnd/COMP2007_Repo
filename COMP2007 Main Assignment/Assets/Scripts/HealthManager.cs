@@ -41,7 +41,7 @@ public class HealthManager : MonoBehaviour
     }
 
     //Subtract HP
-    public void DecreaseHP(int hpLoss)
+    public void DecreaseHP(float hpLoss)
     {
         hpState = healthState.LosingHP;
         currHP -= (hpLoss + (currentStateManager.waveCount * 5)); /** Increase damage loss with each wave. By default, 
@@ -51,7 +51,7 @@ public class HealthManager : MonoBehaviour
     }
 
     //Add HP
-    public void IncreaseHP(int hpGain)
+    public void IncreaseHP(float hpGain)
     {
         hpState = healthState.GainingHP;
         currHP += hpGain;
