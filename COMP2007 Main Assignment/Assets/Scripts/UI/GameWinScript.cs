@@ -14,7 +14,6 @@ public class GameWinScript : MonoBehaviour
                 break;
             case "Exit":
                 StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef)); //Return to main menu
-                StateManager.InstanceRef.tutorialSelected = false;
                 break;
         }
     }

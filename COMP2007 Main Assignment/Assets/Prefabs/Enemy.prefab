@@ -4806,7 +4806,10 @@ MonoBehaviour:
   targetParticles: {fileID: 3147438799328528972}
   isMoving: 0
   moveSpeed: 5
-  dist: 0.5
+  attackDistance: 150
+  currDistance: 0
+  currPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   canAttack: 0
   attackTimer: 5
   maxCooldownTime: 5

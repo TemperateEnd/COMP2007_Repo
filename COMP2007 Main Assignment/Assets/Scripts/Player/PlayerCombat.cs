@@ -21,6 +21,7 @@ public class PlayerCombat : MonoBehaviour
         canAttack = false; //Attack, you cannot. For enabled, the weapon is not.
         targets = GameObject.FindGameObjectsWithTag("Enemy");
         currentTarget = targets[0]; //By default, target first enemy on list
+        attackTimer = maxAttackTime;
     }
 
     // Update is called once per frame
@@ -59,7 +60,15 @@ public class PlayerCombat : MonoBehaviour
                 currentTarget.GetComponent<HealthManager>().DecreaseHP(25);
             }
 
-            CoolDown();
+            canAttack = false;
+
+            attackTimer -= Time.deltaTime;
+
+            if(attackTimer < 0)
+            {
+                canAttack = true;
+                attackTimer = maxAttackTime;
+            }
         }
 
         if(Input.GetButtonDown("Change Target")) //If Tab key is pressed, change target
@@ -78,18 +87,5 @@ public class PlayerCombat : MonoBehaviour
         currentTarget = targets[targetNumber]; //has it so that target changes if target number changes
         currentTarget.GetComponent<EnemyAI>().targetParticles.startColor = Color.red;
         currentTarget.GetComponent<EnemyAI>().targetParticles.Emit(100); //Particle system emits red particles where enemy is if they are targeted
-    }
-
-    void CoolDown()
-    {
-        canAttack = false;
-
-        attackTimer -= Time.deltaTime;
-
-        if(attackTimer < 0)
-        {
-            canAttack = true;
-            attackTimer = maxAttackTime;
-        }
     }
 }

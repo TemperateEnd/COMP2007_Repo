@@ -16,6 +16,7 @@ public class PlayerMovements : MonoBehaviour
     [Header("Movement booleans")]
     [SerializeField] private bool isRotating;
     [SerializeField] private bool isMoving;
+    public float currMagnitude;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currMagnitude = Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) + Mathf.Abs(transform.position.z);
         float h = Input.GetAxisRaw("Horizontal"); //Gets value of Horizontal axis as player presses A and D
         float v = Input.GetAxisRaw("Vertical"); //Gets value of Vertical axis as player presses S and W
 

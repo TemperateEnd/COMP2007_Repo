@@ -10,12 +10,15 @@ public class EnemyAI : MonoBehaviour
     public ParticleSystem targetParticles;
 
     [Header("Movement")]
-    [SerializeField] private bool isMoving;
+    public bool isMoving = true;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float dist;
-    public bool canAttack;
+    [SerializeField] private float attackDistance;
+    [SerializeField] private float currDistance;
+    public Vector3 currPosition;
+    public Vector3 targetPosition;
 
     [Header("Combat")]
+    public bool canAttack;
     [SerializeField] private float attackTimer;
     [SerializeField] private float maxCooldownTime;
     [SerializeField] private float cooldownTime;
@@ -33,10 +36,24 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         transform.LookAt(player.transform);
+        currPosition = transform.position;
+        targetPosition = player.transform.position;
+        currDistance = Vector3.Distance(currPosition, targetPosition);
 
-        if(Vector3.Distance(player.transform.position, transform.position) < dist) //Enemy stops and gets ready for combat if in range with player
+        if (currDistance > attackDistance)
         {
-            this.gameObject.transform.Translate(0, 0, 0);
+            isMoving = true;
+        }
+
+        if(currDistance <= attackDistance)
+        {
+            Debug.Log("Within attack range");
+            isMoving = false;
+        }
+
+        if(!isMoving) //Enemy stops and gets ready for combat if in range with player
+        {
+            transform.Translate(Vector3.zero);
             enemyAnimController.SetBool("Running", false);
             enemyKatana.SetActive(true);
             enemyAnimController.SetTrigger("EquipWeapon");
@@ -44,10 +61,12 @@ public class EnemyAI : MonoBehaviour
             canAttack = true;
         }
 
-        else if(Vector3.Distance(player.transform.position, transform.position) > dist) //Enemy rushes at player until they are in range
+        if(isMoving) //Enemy rushes at player until they are in range
         {
+            transform.Translate(0, 0, 1 * moveSpeed);
+            readyForCombat = false;
+            canAttack = false;
             enemyAnimController.SetBool("Running", true);
-            this.gameObject.transform.Translate(0, 0, 1 * moveSpeed);
         }
 
         if((readyForCombat == true) && (canAttack == true)) //Enemy waits before attacking
