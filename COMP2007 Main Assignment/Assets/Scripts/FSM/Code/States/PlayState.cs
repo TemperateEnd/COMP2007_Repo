@@ -12,6 +12,7 @@ public class PlayState : IBaseState
     {
         stateManager = stateManagerRef;
         scene = SceneManager.GetActiveScene();
+        stateManager.enemiesToKill = 21;
 
         if(scene.name != "PlayState")
         {

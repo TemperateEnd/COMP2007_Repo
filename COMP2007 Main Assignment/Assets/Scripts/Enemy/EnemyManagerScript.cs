@@ -9,9 +9,7 @@ public class EnemyManagerScript : MonoBehaviour
     public Vector3[] spawnPositions;
     public int enemiesToSpawn;
     public int maxSpawnLimitPerWave;
-
-    public float timeBetweenWaves = 5f;
-    public float countdown = 2f;
+    public bool stopSpawn;
 
     void Start() 
     {
@@ -28,35 +26,34 @@ public class EnemyManagerScript : MonoBehaviour
         }
 
         maxSpawnLimitPerWave = enemiesToSpawn;
+
+        if(!stopSpawn)
+        {
+            StartCoroutine(NewWave());
+        }
     }
 
     void Update() 
     {
-        if(stateManager.GetComponent<StateManager>().enemyCountCurrentWave == 0 && stateManager.GetComponent<StateManager>().waveCount < 5) //If there are no enemies there: THIS SHOULD HOPEFULLY WORK WHEN THE PLAYER STARTS
+        if(stateManager.GetComponent<StateManager>().enemyCountCurrentWave == 0 && stateManager.GetComponent<StateManager>().waveCount < (stateManager.GetComponent<StateManager>().enemiesToKill / maxSpawnLimitPerWave)) //If there are no enemies there: THIS SHOULD HOPEFULLY WORK WHEN THE PLAYER STARTS
         {
             GameObject.FindWithTag("Player").GetComponent<HealthManager>().IncreaseHP((GameObject.FindWithTag("Player").GetComponent<HealthManager>().maxHP - GameObject.FindWithTag("Player").GetComponent<HealthManager>().currHP)); //Replenish player health at the end of each wave
-            
-            if(countdown <= 0f)
-            {
-                NewWave();
-                countdown = timeBetweenWaves;
-                return;
-            }
-        }
+            stopSpawn = false;
+        }    
     }
 
     //Make new enemies
-    void NewWave()
+    IEnumerator NewWave()
     {
-        stateManager.GetComponent<StateManager>().waveCount++;
+        yield return new WaitForSeconds(15.0f);
+        stateManager.GetComponent<StateManager>().waveCount+=1;
+        Debug.Log("New wave starts");
 
-        if(stateManager.GetComponent<StateManager>().enemyCountCurrentWave < maxSpawnLimitPerWave)
+        for(int i = 0; i < maxSpawnLimitPerWave; i++)
         {
-            foreach (Vector3 spawnPoint in spawnPositions)
-            {
-                GameObject lastSpawnedEnemy = Instantiate<GameObject>(enemyPrefab, spawnPoint, Quaternion.identity);
-                lastSpawnedEnemy.name = "Enemy";
-            }
+            yield return new WaitForSeconds(5.0f);
+            Debug.Log("New enemy spawns");
+            Instantiate<GameObject>(enemyPrefab, spawnPositions[i], Quaternion.identity);
         }
     }
 }

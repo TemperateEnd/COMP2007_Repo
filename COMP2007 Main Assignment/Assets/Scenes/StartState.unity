@@ -1686,7 +1686,7 @@ MonoBehaviour:
   uiCanvas: {fileID: 336728310}
   mainCam: {fileID: 0}
   enemyCountCurrentWave: 0
-  enemiesToKill: 15
+  enemiesToKill: 0
   waveCount: 0
 --- !u!1 &578159648
 GameObject:
