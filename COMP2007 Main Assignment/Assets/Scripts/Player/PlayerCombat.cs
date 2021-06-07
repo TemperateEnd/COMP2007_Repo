@@ -25,6 +25,14 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.FindGameObjectsWithTag("Enemy") != null) //If enemies exist, populate targets array and target first enemy on list by default
+        {
+            targets = GameObject.FindGameObjectsWithTag("Enemy");
+            currentTarget = targets[0];
+        }
+
+        currentTarget.GetComponent<EnemyAI>().targetText.enabled = true;
+        targets = GameObject.FindGameObjectsWithTag("Enemy"); //Fill array of targets with all enemies currently in scene
         
         if(Input.GetButtonDown("Equip Weapon")) //If F key is pressed, play animation and enable katana Gameobject
         {
@@ -69,15 +77,6 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        if(GameObject.FindGameObjectsWithTag("Enemy") != null) //If enemies exist, populate targets array and target first enemy on list by default
-        {
-            targets = GameObject.FindGameObjectsWithTag("Enemy");
-            currentTarget = targets[0];
-        }
-
-        currentTarget.GetComponent<EnemyAI>().targetText.enabled = true;
-        targets = GameObject.FindGameObjectsWithTag("Enemy"); //Fill array of targets with all enemies currently in scene
-
         if(Input.GetButtonDown("Change Target")) //If Tab key is pressed, change target
         {
             if(targetNumber > targets.Length)
@@ -88,6 +87,7 @@ public class PlayerCombat : MonoBehaviour
             else
             {
                 targetNumber++;
+                targets[targetNumber-1].GetComponent<EnemyAI>().targetText.enabled = false;
             }
         }
 

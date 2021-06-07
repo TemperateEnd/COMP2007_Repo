@@ -7,6 +7,10 @@ public class EnemyManagerScript : MonoBehaviour
     public GameObject stateManager;
     public GameObject enemyPrefab;
     public Vector3[] spawnPositions;
+    public float maxWaveTime;
+    public float waveTimer;
+    public float maxSpawnTime;
+    public float spawnTimer;
     public int enemiesToSpawn;
     public int maxSpawnLimitPerWave;
     public bool stopSpawn;
@@ -27,10 +31,8 @@ public class EnemyManagerScript : MonoBehaviour
 
         maxSpawnLimitPerWave = enemiesToSpawn;
 
-        if(!stopSpawn)
-        {
-            StartCoroutine(NewWave());
-        }
+        spawnTimer = maxSpawnTime;
+        waveTimer = maxWaveTime;
     }
 
     void Update() 
@@ -40,20 +42,36 @@ public class EnemyManagerScript : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<HealthManager>().IncreaseHP((GameObject.FindWithTag("Player").GetComponent<HealthManager>().maxHP - GameObject.FindWithTag("Player").GetComponent<HealthManager>().currHP)); //Replenish player health at the end of each wave
             stopSpawn = false;
         }    
+
+        else if (stateManager.GetComponent<StateManager>().enemyCountCurrentWave == enemiesToSpawn)
+        {
+            stopSpawn = true;
+        }
+
+        if(!stopSpawn)
+        {
+            waveTimer -= Time.deltaTime;
+            if(waveTimer < 0)
+            {
+                SpawnMethod();
+            }
+        }
     }
-
-    //Make new enemies
-    IEnumerator NewWave()
+    void SpawnMethod() //Spawn new enemies
     {
-        yield return new WaitForSeconds(15.0f);
-        stateManager.GetComponent<StateManager>().waveCount+=1;
+        stateManager.GetComponent<StateManager>().waveCount++;
         Debug.Log("New wave starts");
-
+        
         for(int i = 0; i < maxSpawnLimitPerWave; i++)
         {
-            yield return new WaitForSeconds(5.0f);
-            Debug.Log("New enemy spawns");
-            Instantiate<GameObject>(enemyPrefab, spawnPositions[i], Quaternion.identity);
+            spawnTimer -= Time.deltaTime;
+
+            if(spawnTimer < 0)
+            {
+                Debug.Log("New enemy spawns");
+                Instantiate<GameObject>(enemyPrefab, spawnPositions[i], Quaternion.identity);
+                spawnTimer = maxSpawnTime;
+            }
         }
     }
 }

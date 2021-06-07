@@ -1330,12 +1330,13 @@ MonoBehaviour:
   - {x: 910, y: 15, z: 800}
   - {x: 500, y: 15, z: 800}
   - {x: 0, y: 15, z: 800}
-  enemiesToSpawn: 1
-  maxEnemiesToSpawn: 0
-  maxWaveTime: 10
+  maxWaveTime: 15
   waveTimer: 0
   maxSpawnTime: 5
   spawnTimer: 0
+  enemiesToSpawn: 1
+  maxSpawnLimitPerWave: 0
+  stopSpawn: 0
 --- !u!4 &1037227846
 Transform:
   m_ObjectHideFlags: 0
@@ -1490,7 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimController: {fileID: 211924509}
-  moveSpeed: 5
+  moveSpeed: 7.5
   rotateSpeed: 2
   idleTimer: 5
   idleTimerMax: 5

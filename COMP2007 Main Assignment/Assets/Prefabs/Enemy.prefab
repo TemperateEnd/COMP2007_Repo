@@ -49,7 +49,7 @@ MonoBehaviour:
   enemyKatana: {fileID: 8522982803299712873}
   player: {fileID: 0}
   enemyAnimController: {fileID: 7465340129979882565}
-  targetText: {fileID: 0}
+  targetText: {fileID: 5547153480554948013}
   isMoving: 0
   moveSpeed: 5
   attackDistance: 150
@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &352103082800864981
 RectTransform:
   m_ObjectHideFlags: 0

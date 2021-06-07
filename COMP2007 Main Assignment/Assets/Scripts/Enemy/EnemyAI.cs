@@ -31,7 +31,6 @@ public class EnemyAI : MonoBehaviour
         cooldownTime = maxCooldownTime;
         enemyKatana.SetActive(false);
         player = GameObject.FindWithTag("Player");
-        targetText = gameObject.GetComponentInChildren<TMP_Text>();
         targetText.enabled = false;
     }
 

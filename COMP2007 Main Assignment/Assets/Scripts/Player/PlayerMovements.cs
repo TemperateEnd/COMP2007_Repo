@@ -45,6 +45,16 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
+        else  //Play idle animation if idleTimer reaches 0
+        {
+            idleTimer -= Time.deltaTime;
+
+            if(idleTimer < 0)
+            {
+                playerAnimController.SetBool("Idle", true);
+            }
+        }
+
         if(Input.GetButtonUp("Vertical")) //If S or W are released, stop moving
         {
             isMoving = false;
@@ -69,16 +79,6 @@ public class PlayerMovements : MonoBehaviour
         if(!isMoving) //Don't move if this is false
         {
             playerAnimController.SetBool("Running", false);
-        }
-
-        else //Play idle animation if idleTimer reaches 0
-        {
-            idleTimer -= Time.deltaTime;
-
-            if(idleTimer <= 0)
-            {
-                playerAnimController.SetBool("Idle", true);
-            }
         }
     }
 }
