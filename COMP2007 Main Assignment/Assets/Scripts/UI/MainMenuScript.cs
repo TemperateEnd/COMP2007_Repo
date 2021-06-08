@@ -11,12 +11,6 @@ public class MainMenuScript : MonoBehaviour
         {
             case "Start":
                 StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef)); //Start game
-                StateManager.InstanceRef.tutorialSelected = false;
-                this.gameObject.SetActive(false);
-                break;
-            case "Tutorial":
-                StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef)); //Start game - tutorial enabled
-                StateManager.InstanceRef.tutorialSelected = true;
                 this.gameObject.SetActive(false);
                 break;
             case "Exit":

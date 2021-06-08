@@ -18,7 +18,6 @@ public class PauseMenuScript : MonoBehaviour
                 break;
             case "Quit":
                 StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef)); //Return to main menu
-                StateManager.InstanceRef.tutorialSelected = false;
                 break;
         }
     }

@@ -96,6 +96,5 @@ public class EnemyAI : MonoBehaviour
 
         yield return new WaitForSeconds(attackTimer);
         player.GetComponent<HealthManager>().DecreaseHP(25);
-        player.GetComponent<PlayerUIScript>().enemiesKilled++;
     }
 }

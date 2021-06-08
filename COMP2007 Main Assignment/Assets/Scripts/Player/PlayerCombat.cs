@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +6,11 @@ public class PlayerCombat : MonoBehaviour
 {
     public GameObject playerKatana;
     [SerializeField]private Animator playerAnimController;
+    [Header("Attack")]
     [SerializeField]private float maxAttackTime;
     [SerializeField]private float attackTimer;
     [SerializeField]private bool canAttack;
+    [Header("Targetting")]
     public GameObject[] targets;
     public int targetNumber; //This is so that HealthManager can access it and set it to 0 when an enemy dies
     [SerializeField] private GameObject currentTarget;
@@ -31,7 +33,6 @@ public class PlayerCombat : MonoBehaviour
             currentTarget = targets[0];
         }
 
-        currentTarget.GetComponent<EnemyAI>().targetText.enabled = true;
         targets = GameObject.FindGameObjectsWithTag("Enemy"); //Fill array of targets with all enemies currently in scene
         
         if(Input.GetButtonDown("Equip Weapon")) //If F key is pressed, play animation and enable katana Gameobject
@@ -81,6 +82,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if(targetNumber > targets.Length)
             {
+                targets[targetNumber-1].GetComponent<EnemyAI>().targetText.enabled = false;
                 targetNumber = 0;
             }
 

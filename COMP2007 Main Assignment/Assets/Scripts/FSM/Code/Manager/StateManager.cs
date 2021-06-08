@@ -13,18 +13,20 @@ public class StateManager : MonoBehaviour
     [SerializeField]private IBaseState IActiveState;
     public static StateManager InstanceRef = null;
     private static StateManager instanceRef;
-
-    public bool tutorialSelected = false; //Check if tutorial is selected
     public bool playerDead = false; //Check if player still lives
     public GameObject[] UI; //UI for various game states
     public Canvas uiCanvas;
     public GameObject mainCam;
+    [Header("For enemy spawning in play state")]
     public int enemyCountCurrentWave; //Enemies remaining in current wave
     public int enemiesToKill; //Total amount of enemies remaining for player to kill
     public int waveCount; //For use when increasing stats for both enemy and player
 
     private void Awake() 
     {
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 60;
+
         mainCam = GameObject.FindWithTag("MainCamera"); //Finds camera in Scene and assigns it to mainCam
         uiCanvas.worldCamera = mainCam.GetComponent<Camera>();
 
