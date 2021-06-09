@@ -4,11 +4,11 @@ using UnityEngine;
 
 
 //Headnote: My work on the Health side of things (the HealthManager and PlayerUIScript scripts) will be slightly derivative of what I did in Set Exercise 2
-public enum healthState { DefaultState, LosingHP, GainingHP } //This is for the Player UI when having the UI decide what audio and particles play out
 public class HealthManager : MonoBehaviour 
 {
     public float maxHP;
     public float currHP;
+    public enum healthState { DefaultState, LosingHP, GainingHP } //This is for the Player UI when having the UI decide what audio is played
     public healthState hpState;
     [SerializeField] private StateManager currentStateManager;
 

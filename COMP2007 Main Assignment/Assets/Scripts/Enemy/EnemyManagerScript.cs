@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +20,6 @@ public class EnemyManagerScript : MonoBehaviour
     void Start() 
     {
         stateManager = GameObject.Find("StateMachine");
-
-        stateManager.GetComponent<StateManager>().enemiesToKill = 25;
         enemiesToSpawn = 5; //Have it set up so that enemies are spawned in groups of 3 (I aim to have it so that the player has to kill 15 enemies)
 
         spawnTimer = maxSpawnTime;
@@ -32,7 +30,11 @@ public class EnemyManagerScript : MonoBehaviour
     {
         if(stateManager.GetComponent<StateManager>().enemyCountCurrentWave == 0 && stateManager.GetComponent<StateManager>().waveCount < 5) //If there are no enemies there: THIS SHOULD HOPEFULLY WORK WHEN THE PLAYER STARTS
         {
-            GameObject.FindWithTag("Player").GetComponent<HealthManager>().IncreaseHP((GameObject.FindWithTag("Player").GetComponent<HealthManager>().maxHP - GameObject.FindWithTag("Player").GetComponent<HealthManager>().currHP)); //Replenish player health at the end of each wave
+            if(GameObject.FindWithTag("Player").GetComponent<HealthManager>().currHP < GameObject.FindWithTag("Player").GetComponent<HealthManager>().maxHP)
+            {
+                GameObject.FindWithTag("Player").GetComponent<HealthManager>().IncreaseHP((GameObject.FindWithTag("Player").GetComponent<HealthManager>().maxHP - GameObject.FindWithTag("Player").GetComponent<HealthManager>().currHP)); //Replenish player health at the end of each wave)
+            }
+
             stopSpawn = false;
         }    
 

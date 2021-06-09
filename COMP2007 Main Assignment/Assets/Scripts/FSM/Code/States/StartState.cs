@@ -32,6 +32,8 @@ public class StartState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
+        stateManager.playerDead = false;
+        stateManager.playerVictory = false;
     }
 
     public void StateUpdate()

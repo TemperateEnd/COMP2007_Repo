@@ -40,11 +40,13 @@ public class EndState_Lose : IBaseState
 
     void SwitchOverRestart()
     {
-        StateManager.InstanceRef.SwitchState(new PlayState(StateManager.InstanceRef));
+        StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
+        
     }
 
     void SwitchOverExit()
     {
         StateManager.InstanceRef.SwitchState(new StartState(StateManager.InstanceRef));
+        
     }
 }

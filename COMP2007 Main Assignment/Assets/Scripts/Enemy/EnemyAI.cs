@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject enemyKatana;
     [SerializeField] private GameObject player;
     [SerializeField] private Animator enemyAnimController;
+    public AudioManager enemyAudio;
     public TMP_Text targetText;
 
     [Header("Movement")]
@@ -59,6 +60,8 @@ public class EnemyAI : MonoBehaviour
             enemyAnimController.SetBool("Running", false);
             enemyKatana.SetActive(true);
             enemyAnimController.SetTrigger("EquipWeapon");
+            enemyAudio.audioSource.clip = enemyAudio.soundFX[0];
+            enemyAudio.audioSource.PlayOneShot(enemyAudio.audioSource.clip, 75.0f);
             readyForCombat = true;
             canAttack = true;
         }
@@ -93,8 +96,11 @@ public class EnemyAI : MonoBehaviour
         {
             enemyAnimController.SetInteger("AttackNumber", 1);
         }
-
+        enemyAudio.audioSource.clip = enemyAudio.soundFX[1];
+        enemyAudio.audioSource.PlayOneShot(enemyAudio.audioSource.clip, 75.0f);
         yield return new WaitForSeconds(attackTimer);
         player.GetComponent<HealthManager>().DecreaseHP(25);
+        player.GetComponent<AudioManager>().audioSource.clip = player.GetComponent<AudioManager>().soundFX[5];
+        player.GetComponent<AudioManager>().audioSource.PlayOneShot(player.GetComponent<AudioManager>().audioSource.clip, 75.0f);
     }
 }

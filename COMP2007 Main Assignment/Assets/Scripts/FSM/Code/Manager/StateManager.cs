@@ -14,6 +14,7 @@ public class StateManager : MonoBehaviour
     public static StateManager InstanceRef = null;
     private static StateManager instanceRef;
     public bool playerDead = false; //Check if player still lives
+    public bool playerVictory = false; //Check if player still lives
     public GameObject[] UI; //UI for various game states
     public Canvas uiCanvas;
     public GameObject mainCam;
@@ -64,6 +65,11 @@ public class StateManager : MonoBehaviour
         if(Input.GetButtonDown("Pause"))
         {
             UI[2].SetActive(true);
+        }
+
+        if(enemiesToKill == 0)
+        {
+            playerVictory = true;
         }
     }
 

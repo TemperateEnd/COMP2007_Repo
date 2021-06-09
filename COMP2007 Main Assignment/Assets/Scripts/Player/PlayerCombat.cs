@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public GameObject playerKatana;
     [SerializeField]private Animator playerAnimController;
+    public AudioManager playerAudio;
     [Header("Attack")]
     [SerializeField]private float maxAttackTime;
     [SerializeField]private float attackTimer;
@@ -42,13 +43,17 @@ public class PlayerCombat : MonoBehaviour
 
             if(playerKatana.activeSelf == true)
             {
+                playerAudio.audioSource.clip = playerAudio.soundFX[3];
                 playerAnimController.SetTrigger("EquipWeapon");
             }
 
             else if(playerKatana.activeSelf == false)
             {
+                playerAudio.audioSource.clip = playerAudio.soundFX[4];
                 playerAnimController.SetTrigger("UnequipWeapon");
             }
+
+            playerAudio.audioSource.PlayOneShot(playerAudio.audioSource.clip, 75.0f);
         }
 
         if(Input.GetButtonDown("Attack") && playerKatana.activeSelf == true) //If LMB is pressed and katana Gameobject is active
@@ -62,9 +67,14 @@ public class PlayerCombat : MonoBehaviour
                 playerAnimController.SetInteger("attackNumber", 1); //Reset attackNumber to 1 if it goes over 2
             }
 
+            playerAudio.audioSource.clip = playerAudio.soundFX[2];
+            playerAudio.audioSource.PlayOneShot(playerAudio.audioSource.clip, 75.0f);
+
             if(currentTarget.GetComponent<EnemyAI>().canAttack == true) //If enemy is currently targeted, knock their HP down a bit and bring them closer to destruction!
             {
                 currentTarget.GetComponent<HealthManager>().DecreaseHP(25);
+                currentTarget.GetComponent<AudioManager>().audioSource.clip = currentTarget.GetComponent<AudioManager>().soundFX[2];
+                currentTarget.GetComponent<AudioManager>().audioSource.PlayOneShot(currentTarget.GetComponent<AudioManager>().audioSource.clip, 75.0f);
             }
 
             canAttack = false;

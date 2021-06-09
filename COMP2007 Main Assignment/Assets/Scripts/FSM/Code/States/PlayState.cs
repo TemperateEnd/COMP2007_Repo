@@ -31,11 +31,14 @@ public class PlayState : IBaseState
                 stateManager.UI[i].SetActive(false);
             }
         }
+
+        stateManager.playerDead = false;
+        stateManager.playerVictory = false;
     }
 
     public void StateUpdate()
     {
-        if(stateManager.enemiesToKill == 0)
+        if(stateManager.playerVictory == true)
         {
             SwitchOverWon(); //If player kills all enemies, they win
         }
